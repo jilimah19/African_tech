@@ -4,105 +4,500 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ghana Tech Legends</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
         body {
-            font-family: 'segue ui', arial, sans-serif;
-            background-color: #f0f8ff;
+            background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
             color: #333;
             line-height: 1.6;
-            margin: 0;
+            min-height: 100vh;
             padding: 20px;
+            animation: fadeIn 1s ease-out;
         }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #006b3f, #fcd116, #ce1126);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #006b3f;
+        }
+        
         h1 {
             color: #006b3f;
-            text-align: center;
-            font-size: 2.5em;
-            margin-top: 10px;
+            font-size: 2.8rem;
+            margin: 20px 0 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
+        
+        .subtitle {
+            color: #ce1126;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .intro {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #555;
+            text-align: center;
+            line-height: 1.8;
+        }
+        
+        .hero-card {
+            background: linear-gradient(145deg, #ffffff, #f8f8f8);
+            margin: 25px auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            max-width: 700px;
+            border-left: 4px solid #006b3f;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #006b3f, #ce1126);
+        }
+        
         h2 {
             color: #ce1126;
             border-bottom: 2px dashed #006b3f;
-            padding-bottom: 5px;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .hero-card {
-            background: white;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
+        
+        h2 i {
+            color: #006b3f;
         }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .hero-image {
+            flex-shrink: 0;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #006b3f;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .hero-info {
+            flex: 1;
+        }
+        
         .quote {
             font-style: italic;
-            color: #555;
+            color: #006b3f;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            padding: 10px 15px;
+            background: rgba(0, 107, 63, 0.08);
+            border-left: 3px solid #ce1126;
+            border-radius: 0 8px 8px 0;
         }
+        
+        .achievement {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .highlight {
+            color: #ce1126;
+            font-weight: 600;
+        }
+        
         .your-turn {
-            background: #e8f4f8;
-            padding: 20px;
-            border-left: 5px solid #006b3f;
-            margin-top: 30px;
-            
+            background: linear-gradient(135deg, #e8f4f8, #d4eaf0);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+            border: 2px solid #006b3f;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        button {
-            background: #e8f4f8;
-            color:  #006b3f;
+        
+        .your-turn h3 {
+            color: #ce1126;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .student-info {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .student-info b {
+            color: #006b3f;
+        }
+        
+        .student-quote {
+            font-style: italic;
+            color: #ce1126;
+            font-size: 1.3rem;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        #inspireBtn {
+            background: linear-gradient(to right, #006b3f, #00a86b);
+            color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 15px 40px;
+            border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 1.3rem;
+            margin: 20px 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 107, 63, 0.4);
+            display: inline-block;
         }
-        button:hover {
-            background: #ce1126;
+        
+        #inspireBtn:hover {
+            background: linear-gradient(to right, #ce1126, #ff4d4d);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(206, 17, 38, 0.5);
         }
-        .hero-card img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border: 3px solid #006b3f;
-            display: block;
-            margin: 10px auto;
-
+        
+        #quoteDisplay {
+            margin: 25px auto 10px;
+            font-weight: bold;
+            color: #006b3f;
+            font-size: 1.4rem;
+            min-height: 50px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            max-width: 90%;
+            transition: all 0.5s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 107, 63, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 107, 63, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 107, 63, 0); }
+        }
+        
+        .marquee-container {
+            background: linear-gradient(90deg, #006b3f, #ce1126);
+            color: white;
+            padding: 12px 0;
+            border-radius: 8px;
+            margin-top: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        marquee {
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 5px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            color: #666;
+            font-size: 1rem;
+            border-top: 1px solid #ddd;
+        }
+        
+        .github-info {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 1px solid #ddd;
+        }
+        
+        .github-info h3 {
+            color: #006b3f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .github-steps {
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .github-steps ol {
+            padding-left: 20px;
+        }
+        
+        .github-steps li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .github-steps code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-image {
+                margin: 0 auto 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            #quoteDisplay {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .hero-card {
+                padding: 20px;
+            }
+            
+            .hero-image {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .student-info {
+                font-size: 1.2rem;
+            }
+            
+            .github-steps li {
+                font-size: 0.9rem;
+            }
         }
     </style>
-
 </head>
-<body >
-    <h1>Ghana's Tech Innovators</h1>
-    <p style="text-align: center;">Pioneers who puts African tech on th global map!</p>
-    <hr>
-
-    <div class="hero-card">
-        <h2>Farida Bedwei</h2>
-        <img src="Farida.jpg" alt="Farida's Image">
-        <P class="quote">"Disability is not inability"</P>
-        <p>Built cloud software for <b>millions</b> of unbanked Ghanaians</p>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Ghana's Tech Innovators</h1>
+            <div class="subtitle">Pioneers Putting African Tech on the Global Map!</div>
+        </div>
+        
+        <p class="intro">These remarkable individuals have transformed Ghana's tech landscape through innovation and determination. Their contributions inspire a new generation of African technologists.</p>
+        
+        <div class="hero-card">
+            <h2><i class="fas fa-laptop-code"></i> Farida Bedwei</h2>
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Farida Bedwei">
+                </div>
+                <div class="hero-info">
+                    <p class="quote">"Disability is not inability"</p>
+                    <p class="achievement">Developed revolutionary cloud software that provided banking solutions for <span class="highlight">millions of unbanked Ghanaians</span>, making financial services accessible to all.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-card">
+            <h2><i class="fas fa-map-marked-alt"></i> Sesinam Dagadu</h2>
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Sesinam Dagadu">
+                </div>
+                <div class="hero-info">
+                    <p class="quote">"Navigate from South Africa to Accra in one system, without internet."</p>
+                    <p class="achievement">Founded SnoopCode, an innovative platform that generates <span class="highlight">unique digital addresses</span> for properties across Ghana, revolutionizing navigation in the country.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-card">
+            <h2><i class="fas fa-lightbulb"></i> Herman Chinery-Hesse</h2>
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Herman Chinery-Hesse">
+                </div>
+                <div class="hero-info">
+                    <p class="quote">"Africa's problems need African solutions"</p>
+                    <p class="achievement">Established <span class="highlight">SOFTtribe</span>, West Africa's oldest and most influential software company, paving the way for the region's tech ecosystem.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="your-turn">
+            <h3><i class="fas fa-user-graduate"></i> Your Turn to Shine!</h3>
+            <p class="student-info">Hey <b>Magmanibi Newton Jilimah</b> - UDS Tamale Computer Science Student!</p>
+            <p class="student-quote">"I will become the next Ghana's Tech Pioneer!"</p>
+            
+            <button id="inspireBtn">My Journey Starts NOW!</button>
+            <div id="quoteDisplay">Click the button for inspiration!</div>
+        </div>
+        
+        <div class="github-info">
+            <h3><i class="fab fa-github"></i> How to Update This Website on GitHub</h3>
+            <div class="github-steps">
+                <ol>
+                    <li><b>Go to your GitHub repository</b> and find this HTML file</li>
+                    <li><b>Edit the file</b> by clicking the pencil icon (top-right)</li>
+                    <li><b>Replace the entire content</b> with the fixed code</li>
+                    <li><b>Scroll down</b> and commit your changes with a message</li>
+                    <li><b>Wait 1-3 minutes</b> for GitHub Pages to update</li>
+                    <li><b>Alternative method:</b> Delete the file and upload the fixed version</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="marquee-container">
+            <marquee behavior="scroll" direction="left">
+                Future Tech Leader in Training! • #UDS_Tamale • Ghana to the World • The Next Generation of African Innovators • Dream Big, Code Bigger!
+            </marquee>
+        </div>
+        
+        <div class="footer">
+            <p>Celebrating Ghana's Tech Excellence | Made with Pride 🇬🇭</p>
+            <p>© 2023 Ghana Tech Legends | Random quotes now working!</p>
+        </div>
     </div>
-    <div class="hero-card">
-        <h2>Sesinam Dagadu</h2>
-        <img src="Sesinam.jpg" alt="Sesinam's Image">
-        <p class="quote">"Navigate from South Africa to Accra in one system, without internet.</p>
-        <p>Founded SnoopCode, an app that generates <b>Unique codes</b> for properties in Ghana. Making navigations in the country easier.</p>
-    </div>
 
-    <div class="hero-card">
-        <h2>Herman Chinery-Hesse</h2>
-        <img src="Herman.jpg" alt="Herman's Image">
-        <p class="quote">"African's problems needs African solutions"</p>
-        <p>Founded SOFTtribe - west African's oldest software company.</p>
-    </div>
+    <script>
+        // Ghanaian tech innovation quotes
+        const quotes = [
+            "Fall down 7 times, stand up 8 - Ghanaian proverb",
+            "The river that forgets its source would dry up - Kwame Nkrumah",
+            "Disability is not inability - Farida Bedwei",
+            "Africa's problems need African solutions - Herman Chinery-Hesse",
+            "Your code can change a nation - Magmanibi Newton Jilimah",
+            "Every great developer started where you are now!",
+            "Innovation distinguishes between a leader and a follower - Steve Jobs",
+            "Technology is best when it brings people together - Matt Mullenweg",
+            "The future belongs to those who believe in the beauty of their dreams - Eleanor Roosevelt",
+            "Ghana's tech revolution starts with you!",
+            "In the middle of difficulty lies opportunity - Albert Einstein",
+            "The only way to do great work is to love what you do - Steve Jobs"
+        ];
+        
+        function showQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quoteDisplay = document.getElementById("quoteDisplay");
+            
+            // Fade out animation
+            quoteDisplay.style.opacity = 0;
+            quoteDisplay.style.transform = "translateY(20px)";
+            
+            setTimeout(() => {
+                quoteDisplay.innerText = quotes[randomIndex];
+                
+                // Fade in animation
+                quoteDisplay.style.opacity = 1;
+                quoteDisplay.style.transform = "translateY(0)";
+            }, 300);
+            
+            // Button animation
+            const btn = document.getElementById("inspireBtn");
+            btn.innerText = "Keep Going!";
+            btn.style.background = "linear-gradient(to right, #ce1126, #ff4d4d)";
+            
+            setTimeout(() => {
+                btn.innerText = "My Journey Starts NOW!";
+                btn.style.background = "linear-gradient(to right, #006b3f, #00a86b)";
+            }, 2000);
+        }
 
-    <div class="your-turn">
-        <h3>Your Turn to Shine!</h3>
-        <p>hey <b>Magmanibi Newton Jilimah</b> - UDS Tamale CS student!<br>
-        <i>"I would become the next Ghana's Tech Pioneer in Jesus' name!</i></p>
-        <button>My Journey Starts NOW!</button>
-    </div>
-
-    <marquee behavior="scroll" direction="left" style="color: #ce1126;">
-        Future Tech Leader in training! . #UDS_Tamale . Ghana to the world
-    </marquee>
-    
+        // Attach to button click
+        document.getElementById("inspireBtn").addEventListener("click", showQuote);
+    </script>
 </body>
 </html>
