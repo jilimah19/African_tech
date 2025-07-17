@@ -498,6 +498,20 @@
 
         // Attach to button click
         document.getElementById("inspireBtn").addEventListener("click", showQuote);
+        // Add this to your JavaScript
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+
+// Add this to your CSS
+.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+.dark-mode .hero-card {
+    background: #1e1e1e;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+        }
     </script>
 </body>
 </html>
